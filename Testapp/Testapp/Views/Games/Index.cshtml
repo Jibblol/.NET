@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Testapp.Models.Movie>
+﻿@model IEnumerable<Testapp.Models.Game>
 
 @{
     ViewBag.Title = "Index";
@@ -9,9 +9,9 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 
-    @using (Html.BeginForm("Index", "Movies", FormMethod.Get)) {
+    @using (Html.BeginForm("Index", "Games", FormMethod.Get)) {
         <p>
-            Genre: @Html.DropDownList("movieGenre", "All")
+            Genre: @Html.DropDownList("gameGenre", "All")
             Title: @Html.TextBox("SearchString") <br/>
             <input type="submit" value="Filter"/>
         </p> 

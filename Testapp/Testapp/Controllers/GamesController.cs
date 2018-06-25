@@ -10,36 +10,36 @@ using Testapp.Models;
 
 namespace Testapp.Controllers
 {
-    public class MoviesController : Controller
+    public class GamesController : Controller
     {
-        private MovieDBContext db = new MovieDBContext();
+        private GameDBContext db = new GameDBContext();
 
         // GET: Movies
-        public ActionResult Index(string movieGenre, string searchString)
+        public ActionResult Index(string gameGenre, string searchString)
         {
             var GenreLst = new List<string>();
 
-            var GenreQry = from d in db.Movies
+            var GenreQry = from d in db.Games
                 orderby d.Genre
                 select d.Genre;
 
             GenreLst.AddRange(GenreQry.Distinct());
-            ViewBag.movieGenre = new SelectList(GenreLst);
+            ViewBag.gameGenre = new SelectList(GenreLst);
 
-            var movies = from m in db.Movies
+            var games = from m in db.Games
                 select m;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                movies = movies.Where(s => s.Title.Contains(searchString));
+                games = games.Where(s => s.Title.Contains(searchString));
             }
 
-            if (!String.IsNullOrEmpty(movieGenre))
+            if (!String.IsNullOrEmpty(gameGenre))
             {
-                movies = movies.Where(x => x.Genre == movieGenre);
+                games = games.Where(x => x.Genre == gameGenre);
             }
 
-            return View(movies);
+            return View(games);
         }
 
         // GET: Movies/Details/5
@@ -49,12 +49,12 @@ namespace Testapp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);
-            if (movie == null)
+            Game game = db.Games.Find(id);
+            if (game == null)
             {
                 return HttpNotFound();
             }
-            return View(movie);
+            return View(game);
         }
 
         // GET: Movies/Create
@@ -68,16 +68,16 @@ namespace Testapp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public ActionResult Create([Bind(Include = "ID,Title,ReleaseDate,Genre,Price")] Game game)
         {
             if (ModelState.IsValid)
             {
-                db.Movies.Add(movie);
+                db.Games.Add(game);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(movie);
+            return View(game);
         }
 
         // GET: Movies/Edit/5
@@ -87,12 +87,12 @@ namespace Testapp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);
-            if (movie == null)
+            Game game = db.Games.Find(id);
+            if (game == null)
             {
                 return HttpNotFound();
             }
-            return View(movie);
+            return View(game);
         }
 
         // POST: Movies/Edit/5
@@ -100,15 +100,15 @@ namespace Testapp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public ActionResult Edit([Bind(Include = "ID,Title,ReleaseDate,Genre,Price")] Game game)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(movie).State = EntityState.Modified;
+                db.Entry(game).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(movie);
+            return View(game);
         }
 
         // GET: Movies/Delete/5
@@ -118,12 +118,12 @@ namespace Testapp.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Movie movie = db.Movies.Find(id);
-            if (movie == null)
+            Game game = db.Games.Find(id);
+            if (game == null)
             {
                 return HttpNotFound();
             }
-            return View(movie);
+            return View(game);
         }
 
         // POST: Movies/Delete/5
@@ -131,8 +131,8 @@ namespace Testapp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Movie movie = db.Movies.Find(id);
-            db.Movies.Remove(movie);
+            Game game = db.Games.Find(id);
+            db.Games.Remove(game);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

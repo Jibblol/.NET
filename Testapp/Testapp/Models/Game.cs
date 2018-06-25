@@ -4,7 +4,7 @@ using System.Data.Entity;
 
 namespace Testapp.Models
 {
-    public class Movie
+    public class Game
     {
         public int ID { get; set; }
         public string Title { get; set; }
@@ -17,8 +17,8 @@ namespace Testapp.Models
         public decimal Price { get; set; }
     }
 
-    public class MovieDBContext : DbContext
+    public class GameDBContext : DbContext
     {
-        public DbSet<Movie> Movies { get; set; }
+        public DbSet<Game> Games { get; set; }
     }
 }
