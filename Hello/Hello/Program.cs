@@ -10,18 +10,29 @@ namespace Hello
     {
         static void Main(string[] args)
         {
+            string movie1 = "inception";
+            string movie2 = "bastard";
+
+            List<string> movieList;
+            movieList = new List<string>();
+
+            movieList.Add(movie1);
+            movieList.Add(movie2);
+
             Console.WriteLine("Your name:");
             string name = Console.ReadLine();
 
-            Console.WriteLine("How many hours of sleep did you get last night?");
-            int hoursOfSleep = int.Parse(Console.ReadLine());
-
             Console.WriteLine("Hello, " + name);
 
-            if(hoursOfSleep > 8) {
-                Console.WriteLine("Your are well rested");
-            } else {
-                Console.WriteLine("You need more sleep");
+            Console.WriteLine("Enter the name of the movie to add to the list:");
+            string movie = Console.ReadLine();
+
+            movieList.Add(movie);
+            
+            Console.WriteLine("You added: " + movie);
+
+            foreach(string s in movieList) {
+                Console.WriteLine(s);
             }
         }
     }

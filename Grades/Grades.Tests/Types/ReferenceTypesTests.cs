@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,18 @@ namespace Grades.Tests.Types
     [TestClass]
     public class TypesTests
     {
+
+        public void OmgWhereAmI([CallerFilePath] string file = null, [CallerMemberName] string method = null, [CallerLineNumber] int line = 0)
+        {
+            System.Diagnostics.Debug.WriteLine($"{file}:{line} at {method}");
+            System.Diagnostics.Debugger.Break();
+        }
+
+        [TestMethod]
+        public void MyTestMethod()
+        {
+            OmgWhereAmI();
+        }
 
         [TestMethod]
         public void UsingLists()
