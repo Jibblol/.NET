@@ -10,6 +10,40 @@ namespace Grades.Tests.Types
     [TestClass]
     public class TypesTests
     {
+
+        [TestMethod]
+        public void UsingLists()
+        {
+            List<string> gradeList;
+            gradeList = new List<string>();
+
+            AddToList(gradeList);
+
+            Assert.AreEqual("Vegard", gradeList[0]);
+        }
+
+        private void AddToList(List<string> gradeList)
+        {
+            gradeList.Add("Vegard");
+        }
+
+        [TestMethod]
+        public void UsingArrays()
+        {
+            float[] grades;
+            grades = new float[3];
+
+            AddGrades(grades);
+
+            Assert.AreEqual(89.1f, grades[1]);
+        }
+
+        private void AddGrades(float[] grades)
+        {
+            grades = new float[5];
+            grades[1] = 89.1f;
+        }
+
         [TestMethod]
         public void UppercaseString()
         {
