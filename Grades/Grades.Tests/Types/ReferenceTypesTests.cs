@@ -53,7 +53,6 @@ namespace Grades.Tests.Types
 
         private void AddGrades(float[] grades)
         {
-            grades = new float[5];
             grades[1] = 89.1f;
         }
 
