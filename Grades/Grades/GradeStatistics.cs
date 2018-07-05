@@ -43,15 +43,19 @@ namespace Grades
         {
             get {
                 string result;
-                if(AverageGrade >= 90) {
+                if (AverageGrade >= 90) {
                     result = "A";
-                } else if(AverageGrade >=80) {
+                }
+                else if (AverageGrade >= 80) {
                     result = "B";
-                } else if(AverageGrade >= 70) {
+                }
+                else if (AverageGrade >= 70) {
                     result = "C";
-                } else if(AverageGrade >= 60) {
+                }
+                else if (AverageGrade >= 60) {
                     result = "D";
-                } else {
+                }
+                else {
                     result = "F";
                 }
                 return result;
