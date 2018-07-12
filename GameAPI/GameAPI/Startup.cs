@@ -30,7 +30,11 @@ namespace GameAPI
         {
             services.AddScoped<IGameService, GameService>();
             services.AddDbContext<WhatsThatGameProdContext>(opt =>
-                opt.UseInMemoryDatabase("GameList"));
+            {
+                opt.UseSqlServer(
+                    "Server=(localdb)\\mssqllocaldb;Database=Game;Trusted_Connection=True;MultipleActiveResultSets=true");
+            });
+                
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
