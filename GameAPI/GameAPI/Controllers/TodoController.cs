@@ -16,8 +16,8 @@ namespace TodoApi.Controllers
             _context = context;
 
             if (!_context.Game.Any()) {
-                _context.Game.Add(new Game { Title = "TPA" });
-                _context.Game.Add(new Game { Title = "KCD" });
+                _context.Game.Add(new Game { Title = "TPA" , Description = "Pinball game" ,  Year = 2013});
+                _context.Game.Add(new Game { Title = "KCD" , Description = "Medieval game", Year = 2018 });
                 _context.SaveChanges();
             }
         }
@@ -66,7 +66,7 @@ namespace TodoApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete(long id)
+        public IActionResult Delete(int id)
         {
             var todo = _context.Game.Find(id);
             if (todo == null) {
