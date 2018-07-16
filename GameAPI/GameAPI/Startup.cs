@@ -28,6 +28,7 @@ namespace GameAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddScoped<IGameService, GameService>();
             services.AddDbContext<WhatsThatGameProdContext>(opt =>
             {
@@ -51,7 +52,14 @@ namespace GameAPI
                 //app.UseHsts();
             }
 
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
+
             // app.UseHttpsRedirection();
+
             app.UseMvc();
         }
     }
