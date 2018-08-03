@@ -16,9 +16,9 @@ namespace TodoApi.Controllers
             _context = context;
 
             if (!_context.Game.Any()) {
-                _context.Game.Add(new Game { Title = "TPA" , Description = "Pinball game" ,  Year = 2013});
-                _context.Game.Add(new Game { Title = "KCD" , Description = "Medieval game", Year = 2018 });
-                _context.SaveChanges();
+                //_context.Game.Add(new Game { Title = "TPA" , Description = "Pinball game" ,  Year = 2013});
+                //_context.Game.Add(new Game { Title = "KCD" , Description = "Medieval game", Year = 2018 });
+                //_context.SaveChanges();
             }
         }
 
@@ -29,7 +29,7 @@ namespace TodoApi.Controllers
         }
 
         [HttpGet("{id}", Name = "GetTodo")]
-        public ActionResult<Game> GetById(int id)
+        public IActionResult GetById(int id)
         {
             var item = _context.Game.Find(id);
             if (item == null)
@@ -37,7 +37,7 @@ namespace TodoApi.Controllers
                 return NotFound();
             }
 
-            return item;
+            return Ok(item);
         }
 
         [HttpPost]

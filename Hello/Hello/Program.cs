@@ -35,5 +35,13 @@ namespace Hello
                 Console.WriteLine(s);
             }
         }
+
+        public void ListMovies()
+        {
+            foreach(string s in movieList) {
+
+            }
+        }
+
     }
 }
