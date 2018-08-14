@@ -15,7 +15,6 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-
         private static readonly HttpClient client = new HttpClient();
         public Form1()
         {
@@ -29,12 +28,12 @@ namespace WindowsFormsApp1
 
         private async Task getAllGames()
         {
-            HttpResponseMessage response = await client.GetAsync("https://localhost:44377/api/todo");
+            var response = await client.GetAsync("https://localhost:44377/api/todo");
             response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync();
 
             try {
-                Item[] item = JsonConvert.DeserializeObject<Item[]>(responseBody);
+                var item = JsonConvert.DeserializeObject<Item[]>(responseBody);
 
                 dataGridView1.DataSource = item;
             }
@@ -46,34 +45,18 @@ namespace WindowsFormsApp1
 
         private void addGames_Click(object sender, EventArgs e)
         {
-            addGame();
-        }
-
-        private async Task addGame()
-        {
-            var values = new Dictionary<string, string>
+            using (var form2 = new Form2())
             {
-                //{ "thing1", "hello" },
-                //{ "thing2", "world" },
-                { "title", "pinmandeluxe" }
-            };
-
-            //var content = new FormUrlEncodedContent(values);
-            var jsonString = JsonConvert.SerializeObject(values);
-            var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
-
-            var response = await client.PostAsync("https://localhost:44377/api/todo", content);
-
-            var responseString = await response.Content.ReadAsStringAsync();
+                form2.ShowDialog();
+            }
         }
-        
     }
 
     public class Item
     {
-        public string title { get; set; }
-        public int? year { get; set; }
-        public string description { get; set; }
-        public bool isComplete { get; set; }
+        public string Title { get; set; }
+        public int? Year { get; set; }
+        public string Description { get; set; }
+        public bool IsComplete { get; set; }
     }
 }
