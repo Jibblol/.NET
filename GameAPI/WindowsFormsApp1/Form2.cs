@@ -14,7 +14,7 @@ namespace WindowsFormsApp1
 {
     public partial class Form2 : Form
     {
-        private static readonly HttpClient client = new HttpClient();
+        private static readonly HttpClient Client = new HttpClient();
         public Form2()
         {
             InitializeComponent();
@@ -44,7 +44,7 @@ namespace WindowsFormsApp1
             var jsonString = JsonConvert.SerializeObject(values);
             var content = new StringContent(jsonString, Encoding.UTF8, "application/json");
 
-            var response = await client.PostAsync("https://localhost:44377/api/todo", content);
+            var response = await Client.PostAsync("https://localhost:44377/api/todo", content);
 
             var responseString = await response.Content.ReadAsStringAsync();
         }
