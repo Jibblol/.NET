@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using GameAPI.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace TodoApi.Controllers
+namespace GameAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
